@@ -1,0 +1,21 @@
+{
+  "name": "bare_knuckles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "zero-downtime-deployment.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://hellgrenj@bitbucket.org/hellgrenj/bare_knuckles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/hellgrenj/bare_knuckles#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "shelljs": "^0.7.8",
+    "superagent": "^3.6.0"
+  }
+}

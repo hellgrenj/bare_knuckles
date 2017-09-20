@@ -1,0 +1,48 @@
+version: '3'
+services:
+  api1:
+    build: ./api
+    restart: always
+    environment:
+      - ASPNETCORE_URLS=http://*:5000
+    ports:
+      - "5000:5000"
+    depends_on:
+     - postgres
+    links:
+     - postgres
+  api2:
+    build: ./api
+    restart: always
+    environment:
+      - ASPNETCORE_URLS=http://*:5600
+    ports:
+      - "5600:5600"
+    depends_on:
+     - postgres
+    links:
+     - postgres
+  postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+    - postgresvol:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=postgres
+  proxy:
+    build: ./proxy
+    restart: always
+    depends_on:
+       - api1
+       - api2
+    links:
+       - api1
+       - api2
+    ports:
+      - "80:80"
+volumes:
+  postgresvol:
